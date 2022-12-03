@@ -1,0 +1,58 @@
+ insert into UserMenuModule (Id,Name,Icon,Type,Active,CompanyId,Action,UserIdInsert,InsertDate,UpdateDate,DeleteDate)
+            (select NEWID(),module_nam,'glyphicon glyphicon-file','U',module_act,(select id from Company),'A',(select id from Users),'2021-07-16','2021-07-16','2021-07-16' from twp_db.dbo.m_module)
+
+              insert into UserMenu (Id,Name,Alias,Type,Active,[View],CompanyId,ModuleId,SubCategoryId,Action,UserIdInsert,InsertDate,UpdateDate,DeleteDate)
+              (select NEWID(),isnull(men_nam,men_ali),men_ali,'U',men_act,men_view,(select id from Company),UserMenuModule.id,UserMenuSubCategory.id,'A',(select id from Users),'2021-07-16','2021-07-16','2021-07-16' 
+              from twp_db.dbo.m_men 
+              inner join twp_db.dbo.m_module  on m_men.module_id=m_module.module_id 
+              inner join UserMenuModule on m_module.module_nam=UserMenuModule.Name
+              inner join twp_db.dbo.m_mensubcat on m_men.mensubcat_id=m_mensubcat.mensubcat_id
+              inner join UserMenuSubCategory on m_mensubcat.mensubcat_nam=UserMenuSubCategory.Name
+              where men_cid is not null)
+
+             update UserMenu set name=Alias where ModuleId=(select id from UserMenuModule where name='Payroll')
+             update UserMenu set name='EmployeeCategory' where id='8A5F2784-0F67-4581-9D0E-9866EE3B7662'
+             delete from UserRolePermission where Menu_Id='9660036F-08E0-482E-96D3-2D2127819F9A'
+             delete from UserMenu where id='9660036F-08E0-482E-96D3-2D2127819F9A'
+             update UserMenu set name='InOutEditorCategory' where id='10AEF6F3-6E6C-4DAC-8076-22E0BE4988FE'
+             delete from UserRolePermission where Menu_Id='B87BE834-27E3-4DEB-9688-BCC41EFB9F49'
+             delete from UserMenu where id='B87BE834-27E3-4DEB-9688-BCC41EFB9F49A'
+             update UserMenu set name='AnnualLeaves' where id='EFC867A8-1613-461A-ABC7-F6E5A0F3BFDD'
+             update UserMenu set name='AnnualLeaves' where id='A5DA83F1-0F48-4FC5-B06F-EC3604ECA9F0D'
+             update UserMenu set name='IncomeTaxSlab' where id='6C59662F-28DD-4BCE-8C52-7F2E93604F33'
+             update UserMenu set name='LoanCategory' where id='89C8971D-1551-4FED-97E4-BF54E913FA49'
+             update UserMenu set name='MachineCompany' where id='4034AABE-3908-4618-AEC0-FF406F1A188A'
+             update UserMenu set name='MachineInformation' where id='A73C47F5-BCC7-450A-8BC6-A90645B8AFF8'
+             delete from UserRolePermission where Menu_Id='C4212CBD-1691-487A-8362-0EED224B8846'
+             delete from UserMenu where id='C4212CBD-1691-487A-8362-0EED224B8846'
+             update UserMenu set name='RosterGroup' where id='F7D34DF9-7813-4B37-BB3D-93351155E3D6'
+            update UserMenu set name='EmployeeProfile' where id='DCBA1954-D500-4FB3-827A-47F1EAB8A1E5'
+
+              insert into UserRolePermission(Id,View_Permission,Insert_Permission,Update_Permission,Delete_Permission,Print_Permission,Check_Permission,Approve_Permission,Roles_Id,Menu_Id,Type,Active,Action,UserIdInsert,InsertDate,UpdateDate,DeleteDate)
+              select newid(),per_view,per_new,per_upd,per_del,per_print,per_ck,per_app,(select id from roles where name='SuperAdmin'),UserMenu.Id,'S',1,'A',(select id from users),'2021-07-16','2021-07-16','2021-07-16'  
+              from twp_db.dbo.m_per
+              inner join twp_db.dbo.m_men 
+              on twp_db.dbo.m_per.men_id=m_men.men_id 
+              inner join UserMenu on m_men.men_ali=usermenu.Alias where usr_id=1
+
+               insert into UserMenu (Id,Name,Alias,Type,Active,[View],CompanyId,ModuleId,SubCategoryId,Action,UserIdInsert,InsertDate,UpdateDate,DeleteDate)
+               (
+               select 
+              NEWID(),isnull(men_nam,men_ali),men_ali,'U',isnull(men_act,0),men_view,(select id from Company),UserMenuModule.id,(select id from UserMenuSubCategory where name='Report'),'A',(select id from users),'2021-07-16','2021-07-16','2021-07-16' 
+               from twp_Db.dbo.m_men 
+               inner join twp_Db.dbo.m_module  on m_men.module_id=m_module.module_id 
+              inner join UserMenuModule on m_module.module_nam=UserMenuModule.Name
+               inner join twp_Db.dbo.m_mensubcat on m_men.mensubcat_id=m_mensubcat.mensubcat_id --and mencat_id=3
+               inner join UserMenuSubCategory on m_mensubcat.mensubcat_nam=UserMenuSubCategory.Name
+               where men_cid is null
+              )
+
+               insert into UserRolePermission(Id,View_Permission,Insert_Permission,Update_Permission,Delete_Permission,Print_Permission,Check_Permission,Approve_Permission,Roles_Id,Menu_Id,Type,Active,Action,UserIdInsert,InsertDate,UpdateDate,DeleteDate)
+               select  newid(),per_view,per_new,per_upd,per_del,per_print,per_ck,per_app,(select id from roles where name='superadmin'),UserMenu.Id,'S',1,'A',(select id from users),'2021-07-16','2021-07-16','2021-07-16'  from twp_db.dbo.m_per
+               inner join twp_db.dbo.m_men 
+               on m_per.men_id=m_men.men_id 
+               inner join UserMenu on m_men.men_ali=usermenu.Alias 
+               where usr_id=1
+               and UserMenu.Id not in (select menu_id from UserRolePermission)
+
+           

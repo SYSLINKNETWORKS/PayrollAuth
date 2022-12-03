@@ -1,0 +1,50 @@
+--Country
+insert into Country (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),coun_nam,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_coun
+
+--City
+insert into City (id,[Name],CountryId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),city_nam,Country.Id,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_city
+			inner join TWP_ERP.dbo.m_coun on m_city.coun_id=m_coun.coun_id 
+			inner join country on country.Name=m_coun.coun_nam
+
+--Zone
+insert into zone (id,[Name],CityId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),zone_nam,City.Id,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_zone
+			inner join TWP_ERP.dbo.m_CITY on m_zone.city_id=m_city.city_id 
+			inner join city on city.Name=m_CITY.city_nam
+
+
+--Customer Category
+insert into customercategory (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),cuscat_nam,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_cuscat
+
+
+--Customer Sub-Category
+insert into customersubcategory (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),cussubcat_nam,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_cussubcat
+
+
+--Customer Bank
+insert into customerbank (id,[Name],ShortName,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),cusbk_nam,cusbk_snm,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_cusbk
+
+--Customer
+insert into customer (id,[Name],ContactPerson,Address,Phone,Mobile,CNIC,Fax,Email,Web,STNCheck,NTN,STN,Status,creditday,Amountlimit,CustomerCategoryId,CustomerSubCategoryId,ZoneId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),cus_nam,cus_cp,cus_Add,cus_pho,cus_mob,cus_cnic,cus_fax,cus_eml,cus_web,cus_ckntn,cus_ntn,cus_stn,cus_st,cus_creday,cus_amtltd,CustomerCategory.Id,CustomerSubCategory.Id,Zone.Id,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_cus
+			inner join twp_erp.dbo.m_cuscat on m_cus.cuscat_id=m_Cuscat.cuscat_id 
+			inner join CustomerCategory on m_cuscat.cuscat_nam=CustomerCategory.Name
+			inner join twp_erp.dbo.m_cussubcat on m_cus.cussubcat_id=m_cussubcat.cussubcat_id 
+			inner join CustomersubCategory on m_cussubcat.cussubcat_nam=CustomersubCategory.Name
+			inner join twp_erp.dbo.m_zone on m_cus.zone_id=m_zone.zone_id 
+			inner join zone on m_zone.zone_nam=zone.Name
+--CustomerLocation
+insert into CF_CustomerLocation 
+select newid(),cuslocation_des,'BC13BB32-FE02-492A-9BEC-6C3490F74A95' from twp_erp.dbo.m_cuslocation where cus_id=1
+
+insert into CF_CustomerLocation 
+select newid(),cuslocation_des,'A1D20FE7-B9B7-4483-B268-82843EFB51BD' from twp_erp.dbo.m_cuslocation where cus_id=2
+
+insert into CF_CustomerLocation 
+select newid(),cuslocation_des,'229094B1-48C2-447B-B45B-83C9612ECA71' from twp_erp.dbo.m_cuslocation where cus_id=3
+

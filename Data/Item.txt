@@ -1,0 +1,49 @@
+--Scale
+insert into Scale (id,[Name],ShortName,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),sca_nam,sca_snm,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_sca
+
+--Item Category
+insert into ItemCategory(id,[Name],CategoryType,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),itm_nam,itm_cat,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_itm
+
+
+--Item Sub-Category Master
+insert into ItemSubCategoryMaster(id,[Name],NoInventory,Paper,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),itmsubmas_nam,itmsubmas_inventoryactive,itmsubmas_paperactive,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_itmsubmas
+
+
+--Item Sub-Category 
+insert into ItemSubCategory(id,[Name],CategoryId,DepartmentId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),itmsub_nam,ItemSubCategoryMaster.Id,'45411A30-9074-41FF-BCE0-4F5C4D80B6B8','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_itmsub
+			inner join twp_erp.dbo.m_itmsubmas on m_itmsub.itmsubmas_id=m_itmsubmas.itmsubmas_id
+			inner join ItemSubCategoryMaster on m_itmsubmas.itmsubmas_nam=ItemSubCategoryMaster.Name
+--Brand
+insert into Brand(id,[Name],General,tax,CustomerId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),bd_nam,bd_genact,bd_tax,customer.id,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.m_bd
+			inner join twp_erp.dbo.m_cus on m_bd.cus_id=m_cus.cus_id
+			inner join customer on m_cus.cus_nam=customer.Name
+
+--Item
+insert into cf_Item(id,[Name],Qty,InnerscaleId,MasterQty,MasterScaleId,ManufacturerQty,ManufactureScaleId,MinQty,ReOrderQty,Hight,width,weight,PaperScale,ItemCategoryId,ItemSubCategoryId,BrandId,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),titm_nam,inner_titm_qty,ScaleInner.Id,master_titm_qty,ScaleMaster.Id,master_titm_qty,ScaleMaster.Id,titm_mlvl,titm_rlvl,titm_height,titm_weigth,titm_weigth,titm_paperscale,cf_ItemCategory.Id,cf_ItemSubCategory.Id,(select top 1 id from cf_brand where type='S'),'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.t_itm
+			inner join twp_erp.dbo.m_Sca m_Sca_inner on t_itm.inner_sca_id=m_Sca_inner.sca_id
+			inner join cf_Scale ScaleInner on m_Sca_inner.sca_nam=ScaleInner.Name
+
+			inner join twp_erp.dbo.m_Sca m_Sca_master on t_itm.master_sca_id=m_Sca_master.sca_id
+			inner join cf_Scale ScaleMaster on m_Sca_master.sca_nam=ScaleMaster.Name
+
+
+			--inner join twp_erp.dbo.m_Sca m_Sca_paper on t_itm.titm_paperscale=m_Sca_paper.sca_id
+			--inner join Scale ScalePaper on m_Sca_paper.sca_nam=ScalePaper.Name
+
+			inner join twp_erp.dbo.m_itm on t_itm.itm_id=m_itm.itm_id
+			inner join cf_ItemCategory on m_itm.itm_nam=cf_ItemCategory.Name
+
+			inner join twp_erp.dbo.m_itmsub on t_itm.itmsub_id=m_itmsub.itmsub_id
+			inner join cf_ItemSubCategory on m_itmsub.itmsub_nam=cf_ItemSubCategory.Name
+		--	where bd_id  =-1
+
+
+
+
+

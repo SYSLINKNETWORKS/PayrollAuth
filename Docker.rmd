@@ -1,0 +1,3 @@
+docker build -t teamwork_auth .
+docker run -d -p 8080:80 --name twpauth teamwork_auth
+docker save -o .\Images\teamwork_auth.tar teamwork_auth

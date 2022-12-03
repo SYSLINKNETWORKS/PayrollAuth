@@ -1,0 +1,121 @@
+--Cf_DieCutting
+insert into Cf_DieCutting (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),diec_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.die_cutting
+update Cf_DieCutting set type='S' where name='N.A.'
+
+--Cf_DEyelet
+insert into Cf_Eyelet (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),eyelet_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.eyelet
+update Cf_Eyelet set type='S' where name='N.A.'
+
+--Cf_FoilingHotStamping
+insert into Cf_FoilingHotStamping (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),fhs_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.foiling_hotstamping
+update Cf_FoilingHotStamping set type='S' where name='N.A.'
+
+--Cf_FoilingHotStampingArea
+insert into Cf_FoilingHotStampingArea (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),fhsa_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.foiling_hotstampingarea
+update Cf_FoilingHotStampingArea set type='S' where name='N.A.'
+
+--Cf_LaminationCoating
+insert into Cf_LaminationCoating (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),lc_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.lamination_coating
+update Cf_LaminationCoating set type='S' where name='N.A.'
+
+--LaminationCoatingArea
+insert into Cf_LaminationCoatingArea (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),lca_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.lamination_coatingarea
+update Cf_LaminationCoatingArea set type='S' where name='N.A.'
+
+--PackingNature
+insert into Cf_PackingNature (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),pn_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.packing_nature
+update Cf_PackingNature set type='S' where name='N.A.'
+
+
+--Pasting
+insert into Cf_Pasting (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),pas_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.Pasting
+update Cf_Pasting set type='S' where name='N.A.'
+
+--Sublet
+insert into Cf_Sublet (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),sublet_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.sublet
+update Cf_Sublet set type='S' where name='N.A.'
+
+--PrintingColor
+insert into Cf_PrintingColor (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),pcolor_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.printing_color
+update Cf_PrintingColor set type='S' where name='N.A.'
+
+--PrintingOpv
+insert into Cf_PrintingOpv (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),popv_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.printing_opv
+update Cf_PrintingOpv set type='S' where name='N.A.'
+
+--PrintingWaterbase
+insert into Cf_PrintingWaterbase (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),pwaterbase_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.printing_waterbase
+update Cf_PrintingWaterbase set type='S' where name='N.A.'
+
+--UvCoating
+insert into Cf_UvCoating (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),uvc_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.uv_coating
+update Cf_UvCoating set type='S' where name='N.A.'
+
+--UvCoatingarea
+insert into Cf_UvCoatingarea (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),uvca_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.uv_coatingarea
+update Cf_UvCoatingarea set type='S' where name='N.A.'
+
+--UvHoloGraphicCoating
+insert into Cf_UvHoloGraphicCoating (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),uvhc_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.uv_holographiccoating
+update Cf_UvHoloGraphicCoating set type='S' where name='N.A.'
+
+--UvHoloGraphicCoatingArea
+insert into Cf_UvHoloGraphicCoatingArea (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),uvhca_name,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' from TWP_ERP.dbo.uv_holographiccoatingarea
+update Cf_UvHoloGraphicCoatingArea set type='S' where name='N.A.'
+
+--Production Department
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Printing','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'UV','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Lamination','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Foiling','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Die-Cutting','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Pasting','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Eyelet','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Sublet','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+insert into cf_productiondepartment (id,[Name],[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),'Packing','U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+		
+--Machine
+insert into Cf_Machine (id,[Name],productiondepartmentid,productionperhour,[Type],CompanyId,[Active],[Action],UserNameInsert,InsertDate,UpdateDate,DeleteDate)
+            select newid(),machine_name,
+			case department_id 
+				when 1 then (Select id from cf_productiondepartment where name='Printing') 
+				when 2 then (Select id from cf_productiondepartment where name='UV')
+				when 3 then (Select id from cf_productiondepartment where name='Lamination')
+				when 4 then (Select id from cf_productiondepartment where name='Foiling')
+				when 5 then (Select id from cf_productiondepartment where name='Die-Cutting')
+				when 6 then (Select id from cf_productiondepartment where name='Pasting')
+				when 7 then (Select id from cf_productiondepartment where name='Eyelet')
+				when 8 then (Select id from cf_productiondepartment where name='Sublet')
+				when 9 then (Select id from cf_productiondepartment where name='Packing')
+			end,
+			production_per_hr,'U',(select top 1 company.id from Company order by name desc),1,'A',(select top 1 users.NormalizedUserName from users order by email),'2021-09-23','2021-09-23','2021-09-23' 
+			from TWP_ERP.dbo.t_machine
+update Cf_Machine set type='S' where name='N.A.'
+
+	
+            
